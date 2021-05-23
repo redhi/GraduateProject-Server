@@ -47,7 +47,7 @@ app.use(
   })
 );
 
-//라우팅 정보를 읽어서 라우팅 설정
+// 라우팅 정보를 읽어서 라우팅 설정
 var router = express.Router();
 route_loader.init(app, router);
 
@@ -69,6 +69,6 @@ app.on("close", function () {
 var server = http.createServer(app).listen(app.get("port"), function () {
   console.log("서버가 시작되었습니다. 포트 : " + app.get("port"));
 
-  // 데이터베이스 초기화
+ // 데이터베이스 초기화
   database.init(app, config);
 });
