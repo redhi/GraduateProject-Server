@@ -2,7 +2,7 @@ var express = require("express"),
   http = require("http"),
   path = require("path");
 
-//Express의 미들웨어 불러오기
+// Express의 미들웨어 불러오기
 var bodyParser = require("body-parser"),
   cookieParser = require("cookie-parser"),
   static = require("serve-static"),
@@ -13,7 +13,7 @@ var expressErrorHandler = require("express-error-handler");
 // Session 미들웨어 불러오기
 var expressSession = require("express-session");
 
-//Passport 사용
+// Passport 사용
 var passport = require("passport");
 var flash = require("connect-flash");
 
