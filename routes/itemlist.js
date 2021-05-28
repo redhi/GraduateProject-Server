@@ -119,7 +119,6 @@ var showitemlist = function (req, res) {
     }
   );
 };
-
 var modifyitemlist = function (req, res) {
   console.log("itemlist모듈에 modifyitemlist함수 호출함");
   var title = req.body.title || req.query.title;
@@ -133,10 +132,42 @@ var modifyitemlist = function (req, res) {
   var month = req.body.month || req.query.month;
   var date = req.body.date || req.query.date;
   var _id = req.body._id || req.query._id;
-
+    var id = req.body.id || req.qurey.id;
+  var num = _id;
   var database = req.app.get("database");
-  // database.ItemListModel.update({id:id,ENGLISH:ENGLISH},$set:{'MEMO':MEMO});
-  database.ItemListModel.update(
+    if (num=="1"){
+        console.log(num+ "들어가졌니..?");
+        var itemlist = new database.ItemListModel({
+    title: title,
+    itemname: itemname,
+    price: price,
+    category: category,
+    paymethod: paymethod,
+    profit: profit,
+    amount: amount,
+    year: year,
+    month: month,
+    date: date,
+    id: id
+    });
+        itemlist.save(function (err) {
+    if (err) {
+      res.writeHead("200", { "Content-Type": "application/json;charset=utf8" });
+      var message = { success: false, error: err.message };
+      res.write(JSON.stringify(message));
+      res.end();
+      return;
+    }
+    console.log(id + "에 itemlist추가함");
+    console.dir(itemlist);
+    res.writeHead("200", { "Content-Type": "application/json;charset=utf8" });
+    var message = { success: true };
+    res.write(JSON.stringify(message));
+    res.end();
+  });
+     }
+    else{
+         database.ItemListModel.update(
     { _id: _id },
     {
       $set: _(
@@ -172,6 +203,10 @@ var modifyitemlist = function (req, res) {
       return;
     }
   );
+        
+    }
+  // database.ItemListModel.update({id:id,ENGLISH:ENGLISH},$set:{'MEMO':MEMO});
+  
 };
 
 var searchitemlist = function (req, res) {
