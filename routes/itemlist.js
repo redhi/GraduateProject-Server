@@ -205,7 +205,6 @@ var modifyitemlist = function (req, res) {
   );
         
     }
-  // database.ItemListModel.update({id:id,ENGLISH:ENGLISH},$set:{'MEMO':MEMO});
   
 };
 
