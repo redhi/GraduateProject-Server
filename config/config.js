@@ -83,12 +83,7 @@ module.exports = {
       method: "modifyitemlist",
       type: "post",
     },
-    {
-      file: "./itemlist",
-      path: "/process/searchitemlist/:ENGLISH/:id",
-      method: "searchitemlist",
-      type: "get",
-    },
+    
   ],
   jsonrpc_api_path: "/api",
 };
