@@ -208,34 +208,10 @@ var modifyitemlist = function (req, res) {
   
 };
 
-var searchitemlist = function (req, res) {
-  console.log("itemlist모듈에 searchitemlist함수 호출함");
-  var ENGLISH = req.params.ENGLISH;
-  var id = req.params.id;
-  var database = req.app.get("database");
-  database.ItemListModel.find(
-    { ENGLISH: ENGLISH, id: id },
-    function (err, results) {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      if (results.length > 0) {
-        res.writeHead("200", {
-          "Content-Type": "application/json;charset=utf8",
-        });
-
-        res.write(JSON.stringify(results));
-        res.end();
-      }
-    }
-  );
-};
 
 module.exports.additemlist = additemlist;
 module.exports.deleteitem = deleteitem;
 module.exports.deleteitemlist = deleteitemlist;
 module.exports.showitemlist = showitemlist;
 module.exports.modifyitemlist = modifyitemlist;
-module.exports.searchitemlist = searchitemlist;
 module.exports.distinctitemlist = distinctitemlist;
