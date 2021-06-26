@@ -4,6 +4,7 @@ Schema.createSchema = function(mongoose) {
 	
 	// 스키마 정의
 	var CategoryNameSchema = mongoose.Schema({
+            id: {type: String, 'default':''},
 	    categoryname: {type: String, 'default':''},
        
         
