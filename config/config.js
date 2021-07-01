@@ -83,7 +83,12 @@ module.exports = {
       method: "modifyitemlist",
       type: "post",
     },
-    
+    {
+      file: "./betcashbook",
+      path: "/process/addbetcashbook",
+      method: "addbetcashbook",
+      type: "post",
+    },
   ],
   jsonrpc_api_path: "/api",
 };
