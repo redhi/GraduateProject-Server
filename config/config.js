@@ -64,12 +64,6 @@ module.exports = {
       method: "deleteitem",
       type: "post",
     },
-    {
-      file: "./itemlist",
-      path: "/process/distinctlist",
-      method: "distinctitemlist",
-      type: "post",
-    },
 
     {
       file: "./itemlist",
