@@ -86,11 +86,6 @@ var deleteitemlist = function (req, res) {
   });
 };
 
-var distinctitemlist = function (req, res) {
-  var title = req.body.title || req.query.title;
-  database.ItemListModel.memeber.distinct("title");
-};
-
 var showitemlist = function (req, res) {
   console.log("itemlist모듈에 showitemlist함수 호출함");
   var id = req.params.id;
@@ -214,4 +209,3 @@ module.exports.deleteitem = deleteitem;
 module.exports.deleteitemlist = deleteitemlist;
 module.exports.showitemlist = showitemlist;
 module.exports.modifyitemlist = modifyitemlist;
-module.exports.distinctitemlist = distinctitemlist;
