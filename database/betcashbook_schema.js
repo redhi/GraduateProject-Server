@@ -16,7 +16,7 @@ Schema.createSchema = function(mongoose) {
         endDay:[ {year: {type: Number, 'default':''},
         month: {type: Number, 'default':''},
         date: {type: Number, 'default':''}}],
-        
+        id: {type: String, 'default':''}
        
         //BoardExample에 post_schema참조  ,   ref-config.js확인 부탁 바람 제발
         refMember:{type:mongoose.Schema.ObjectId,ref:'member'},
