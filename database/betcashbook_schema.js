@@ -12,10 +12,6 @@ Schema.createSchema = function (mongoose) {
     endDay: { type: String, default: "" },
     id: { type: Array, default: "" },
     category: { type: String, default: "" },
-
-    //BoardExample에 post_schema참조  ,   ref-config.js확인 부탁 바람 제발
-    //refMember:{type:mongoose.Schema.ObjectId,ref:'member'},
-    //refItemlist:{type:mongoose.Schema.ObjectId,ref:'itemlist'},
     inviteCode: { type: String, default: "" },
   });
   return BetCashBookSchema;
