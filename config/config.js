@@ -1,6 +1,6 @@
 module.exports = {
   server_port: 3000,
-  db_url: "mongodb://localhost:27017/local",
+  db_url: "mongodb+srv://ServerMJ:4bdf1234@cluster0.4xdnv.mongodb.net/test",
   db_schemas: [
     {
       file: "./member_schema",
@@ -15,10 +15,10 @@ module.exports = {
       modelName: "ItemListModel",
     },
     {
-      file: "./categoryname_schema",
-      collection: "CategoryName",
-      schemaName: "CategoryNameSchema",
-      modelName: "CategoryNameModel",
+      file: "./category_schema",
+      collection: "Category",
+      schemaName: "CategorySchema",
+      modelName: "CategoryModel",
     },
     {
       file: "./betcashbook_schema",
@@ -81,6 +81,48 @@ module.exports = {
       file: "./betcashbook",
       path: "/process/addbetcashbook",
       method: "addbetcashbook",
+      type: "post",
+    },
+    {
+      file: "./betcashbook",
+      path: "/process/randomcodecheck",
+      method: "randomcodecheck",
+      type: "post",
+    },
+    {
+      file: "./betcashbook",
+      path: "/process/showbetcashbook/:id",
+      method: "showbetcashbook",
+      type: "get",
+    },
+    {
+      file: "./betcashbook",
+      path: "/process/showdetailbetcashbook/:inviteCode",
+      method: "showdetailbetcashbook",
+      type: "get",
+    },
+    {
+      file: "./betcashbook",
+      path: "/process/deletebetcashbook/:id",
+      method: "deletebetcashbook",
+      type: "post",
+    },
+    {
+      file: "./betcashbook",
+      path: "/process/invitebetcashbook",
+      method: "invitebetcashbook",
+      type: "post",
+    },
+    {
+      file: "./category",
+      path: "/process/addcategory",
+      method: "addcategory",
+      type: "post",
+    },
+    {
+      file: "./member",
+      path: "/process/findmemberlist",
+      method: "findmemberlist",
       type: "post",
     },
   ],

@@ -195,6 +195,85 @@ var invitebetcashbook = function (req, res) {
     }
   );
 };
+var idarraycheck2 = function (req, res) {
+  console.log("betcashbook모듈에 idarraycheck2 함수 호출함");
+  var startDay = req.body.startDay || req.query.startDay;
+  var endDay = req.body.endDay || req.query.endDay;
+  var category = req.body.category || req.query.category;
+  var num = req.body.num || req.query.num;
+  var num2 = parseInt(num);
+  var start = new Date(startDay);
+  var end = new Date(endDay);
+  var aJsonArray = new Array();
+  var myObj = new Object();
+  var str;
+  var cntp = 0;
+  var answer;
+  console.log(start);
+  console.log("num: " + num2);
+  console.log(end);
+  var database = req.app.get("database");
+  async function foo() {
+    var results = await database.ItemListModel.find({
+      id: str,
+      category: category,
+      wholeday: { $gte: start, $lte: end },
+    });
+    answer = 0;
+    console.log("str2: " + str);
+    if (results.length > 0) {
+      for (var i = 0; i < results.length; i++) {
+        console.log("결과는" + results[i]._doc.price);
+        answer += parseInt(results[i]._doc.price);
+      }
+    }
+    console.log("str,ans" + str + ":" + answer);
+    cntp = cntp + 1;
+    aJsonArray.push(answer);
+
+    console.log(aJsonArray);
+    if (aJsonArray.length == num2) {
+      res.writeHead("200", {
+        "Content-Type": "application/json;charset=utf8",
+      });
+
+      res.write(JSON.stringify(aJsonArray));
+      res.end();
+    }
+  }
+
+  for (var key in req.body) {
+    console.log(req.body);
+
+    if (
+      key != "startDay" &&
+      key != "endDay" &&
+      key != "category" &&
+      key != "num"
+    ) {
+      str = req.body[key];
+      console.log("아이디는:" + str);
+      foo();
+    }
+  }
+
+  console.log(aJsonArray);
+
+  //console.log("myobj="+myObj);
+
+  //console.log("answer은:"+answer);
+
+  // console.log("여기str==="+str);
+
+  //myObj[str]=answer;
+
+  // console.log("myObj: "+myObj);
+
+  // var str=req.body[key];
+  //console.log(req.body[key]);
+
+  // console.log(myObj);
+};
 
 module.exports.randomcodecheck = randomcodecheck;
 module.exports.addbetcashbook = addbetcashbook;
@@ -202,3 +281,4 @@ module.exports.showbetcashbook = showbetcashbook;
 module.exports.showdetailbetcashbook = showdetailbetcashbook;
 module.exports.deletebetcashbook = deletebetcashbook;
 module.exports.invitebetcashbook = invitebetcashbook;
+module.exports.idarraycheck2 = idarraycheck2;
