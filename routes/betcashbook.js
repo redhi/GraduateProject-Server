@@ -138,36 +138,10 @@ var deletebetcashbook = function (req, res) {
   var inviteCode = req.body.inviteCode || req.query.inviteCode;
   var id = req.body.id || req.body.id;
   var database = req.app.get("database");
-  database.BetCashBookModel.remove(
-    { id: id, inviteCode: inviteCode },
-    function (err) {
-      if (err) {
-        res.writeHead("200", {
-          "Content-Type": "application/json;charset=utf8",
-        });
-        var message = { success: false };
-        res.write(JSON.stringify(message));
-        res.end();
-        return;
-      }
-      res.writeHead("200", { "Content-Type": "application/json;charset=utf8" });
-      var message = { success: true };
-      res.write(JSON.stringify(message));
-      res.end();
-      return;
-    }
-  );
-};
-var invitebetcashbook = function (req, res) {
-  console.log("betcashbook모듈에 invitebetcashbook함수 호출함");
-  var inviteCode = req.body.inviteCode || req.query.inviteCode;
 
-  var id = req.body.id || req.query.id;
-  var database = req.app.get("database");
-  var database = req.app.get("database");
   database.BetCashBookModel.update(
     { inviteCode: inviteCode },
-    { $push: { id: id } },
+    { $pull: { id: id } },
     function (err, results) {
       console.log(inviteCode);
       console.log(id);
@@ -195,6 +169,39 @@ var invitebetcashbook = function (req, res) {
     }
   );
 };
+
+var invitebetcashbook = function (req, res) {
+  console.log("betcashbook모듈에 invitebetcashbook함수 호출함");
+  var inviteCode = req.body.inviteCode || req.query.inviteCode;
+
+  var id = req.body.id || req.query.id;
+  var database = req.app.get("database");
+  database.BetCashBookModel.findOneAndUpdate(
+    { inviteCode: inviteCode },
+    { $push: { id: id } },
+    function (err, results) {
+      console.log(inviteCode);
+      console.log(id);
+      if (err) {
+        console.log(err);
+        return res.end(err);
+      }
+      console.log(Object.keys(results).length);
+      if (Object.keys(results).length > 0) {
+        console.log("들어옴");
+
+        res.writeHead("200", {
+          "Content-Type": "application/json;charset=utf8",
+        });
+        res.write(JSON.stringify(results));
+        res.end();
+      } else {
+        res.write("0");
+        res.end();
+      }
+    }
+  );
+};
 var idarraycheck2 = function (req, res) {
   console.log("betcashbook모듈에 idarraycheck2 함수 호출함");
   var startDay = req.body.startDay || req.query.startDay;
@@ -212,6 +219,7 @@ var idarraycheck2 = function (req, res) {
   console.log(start);
   console.log("num: " + num2);
   console.log(end);
+  console.log(category);
   var database = req.app.get("database");
   async function foo() {
     var results = await database.ItemListModel.find({
@@ -274,7 +282,6 @@ var idarraycheck2 = function (req, res) {
 
   // console.log(myObj);
 };
-
 module.exports.randomcodecheck = randomcodecheck;
 module.exports.addbetcashbook = addbetcashbook;
 module.exports.showbetcashbook = showbetcashbook;
