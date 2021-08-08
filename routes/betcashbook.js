@@ -202,6 +202,7 @@ var invitebetcashbook = function (req, res) {
     }
   );
 };
+
 var idarraycheck2 = function (req, res) {
   console.log("betcashbook모듈에 idarraycheck2 함수 호출함");
   var startDay = req.body.startDay || req.query.startDay;
@@ -219,7 +220,6 @@ var idarraycheck2 = function (req, res) {
   console.log(start);
   console.log("num: " + num2);
   console.log(end);
-  console.log(category);
   var database = req.app.get("database");
   async function foo() {
     var results = await database.ItemListModel.find({
@@ -266,22 +266,8 @@ var idarraycheck2 = function (req, res) {
   }
 
   console.log(aJsonArray);
-
-  //console.log("myobj="+myObj);
-
-  //console.log("answer은:"+answer);
-
-  // console.log("여기str==="+str);
-
-  //myObj[str]=answer;
-
-  // console.log("myObj: "+myObj);
-
-  // var str=req.body[key];
-  //console.log(req.body[key]);
-
-  // console.log(myObj);
 };
+
 module.exports.randomcodecheck = randomcodecheck;
 module.exports.addbetcashbook = addbetcashbook;
 module.exports.showbetcashbook = showbetcashbook;
