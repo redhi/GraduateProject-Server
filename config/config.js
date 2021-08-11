@@ -77,18 +77,20 @@ module.exports = {
       method: "modifyitemlist",
       type: "post",
     },
+
+    {
+      file: "./betcashbook",
+      path: "/process/groupvalidate",
+      method: "groupvalidate",
+      type: "post",
+    },
     {
       file: "./betcashbook",
       path: "/process/addbetcashbook",
       method: "addbetcashbook",
       type: "post",
     },
-    {
-      file: "./betcashbook",
-      path: "/process/randomcodecheck",
-      method: "randomcodecheck",
-      type: "post",
-    },
+
     {
       file: "./betcashbook",
       path: "/process/showbetcashbook/:id",
@@ -103,7 +105,7 @@ module.exports = {
     },
     {
       file: "./betcashbook",
-      path: "/process/deletebetcashbook/:id",
+      path: "/process/deletebetcashbook",
       method: "deletebetcashbook",
       type: "post",
     },
@@ -111,6 +113,13 @@ module.exports = {
       file: "./betcashbook",
       path: "/process/invitebetcashbook",
       method: "invitebetcashbook",
+      type: "post",
+    },
+
+    {
+      file: "./betcashbook",
+      path: "/process/idarraycheck",
+      method: "idarraycheck",
       type: "post",
     },
     {
@@ -123,6 +132,42 @@ module.exports = {
       file: "./member",
       path: "/process/findmemberlist",
       method: "findmemberlist",
+      type: "post",
+    },
+    {
+      file: "./yearly",
+      path: "/process/plusyearcheck",
+      method: "plusyearcheck",
+      type: "post",
+    },
+    {
+      file: "./yearly",
+      path: "/process/minusyearcheck",
+      method: "minusyearcheck",
+      type: "post",
+    },
+    {
+      file: "./yearly",
+      path: "/process/showminus",
+      method: "showminus",
+      type: "post",
+    },
+    {
+      file: "./monthly",
+      path: "/process/monthmoneyminus",
+      method: "monthmoneyminus",
+      type: "post",
+    },
+    {
+      file: "./monthly",
+      path: "/process/daymoneyminusplus",
+      method: "daymoneyminusplus",
+      type: "post",
+    },
+    {
+      file: "./monthly",
+      path: "/process/getbudget",
+      method: "getbudget",
       type: "post",
     },
   ],
