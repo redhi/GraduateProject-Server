@@ -136,22 +136,11 @@ module.exports = {
     },
     {
       file: "./yearly",
-      path: "/process/plusyearcheck",
-      method: "plusyearcheck",
+      path: "/process/monthcheck",
+      method: "monthcheck",
       type: "post",
     },
-    {
-      file: "./yearly",
-      path: "/process/minusyearcheck",
-      method: "minusyearcheck",
-      type: "post",
-    },
-    {
-      file: "./yearly",
-      path: "/process/showminus",
-      method: "showminus",
-      type: "post",
-    },
+
     {
       file: "./monthly",
       path: "/process/monthmoneyminus",
@@ -168,6 +157,24 @@ module.exports = {
       file: "./monthly",
       path: "/process/getbudget",
       method: "getbudget",
+      type: "post",
+    },
+    {
+      file: "./setting",
+      path: "/process/setbudget",
+      method: "setbudget",
+      type: "post",
+    },
+    {
+      file: "./setting",
+      path: "/process/deleteuser",
+      method: "deleteuser",
+      type: "post",
+    },
+    {
+      file: "./setting",
+      path: "/process/setphoto",
+      method: "setphoto",
       type: "post",
     },
   ],
