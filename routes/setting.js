@@ -1,3 +1,28 @@
+var showuser = function (req, res) {
+  console.log("setting모듈에 showuser함수 호출함");
+  var id = req.body.id || req.query.id;
+  console.log(id);
+  var database = req.app.get("database");
+  database.MemberModel.find({ id: id }, function (err, results) {
+    if (err) {
+      console.log(err);
+      return res.end(err);
+    }
+    if (results.length > 0) {
+      res.writeHead("200", {
+        "Content-Type": "application/json;charset=utf8",
+      });
+
+      res.write(JSON.stringify(results));
+      res.end();
+    } else {
+      console.log("들어옴?");
+      res.write("[]");
+      res.end();
+    }
+  });
+};
+
 var deleteuser = function (req, res) {
   // 제목에 해당하는거 다 삭제
   console.log("itemlist모듈에 deleteuser 함수 호출함");
@@ -77,16 +102,19 @@ var setbudget = function (req, res) {
 };
 
 var setphoto = function (req, res) {
-  console.log("setting모듈에 setbudget함수 호출함");
+  console.log("setting모듈에 setphoto함수 호출함");
   var photoname = req.body.photoname || req.query.photoname;
+  var name = req.body.name || req.query.name;
 
   var id = req.body.id || req.query.id;
   var database = req.app.get("database");
   database.MemberModel.findOneAndUpdate(
     { id: id },
-    { $set: { photoname: photoname } },
+    { photoname: photoname, name: name },
     function (err, results) {
-      console.log(photoname);
+      console.log("photoname: " + photoname);
+      console.log("nickname: " + name);
+
       console.log(id);
       if (err) {
         console.log(err);
@@ -108,7 +136,7 @@ var setphoto = function (req, res) {
     }
   );
 };
-
+module.exports.showuser = showuser;
 module.exports.deleteuser = deleteuser;
 module.exports.setbudget = setbudget;
 module.exports.setphoto = setphoto;

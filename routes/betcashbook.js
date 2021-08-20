@@ -208,27 +208,37 @@ var invitebetcashbook = function (req, res) {
         res.write(JSON.stringify({}));
         res.end();
       } else {
-        database.BetCashBookModel.findOneAndUpdate(
+        database.BetCashBookModel.find(
           { inviteCode: inviteCode },
-          { $push: { id: id } },
-          function (err, results) {
-            console.log(inviteCode);
-            console.log(id);
-            if (err) {
-              console.log(err);
-              return res.end(err);
-            }
-            //console.log(Object.keys(results).length);
-            if (Object.keys(results).length > 0) {
-              console.log("들어옴");
+          function (err, results1) {
+            if (results1.length > 0) {
+              database.BetCashBookModel.findOneAndUpdate(
+                { inviteCode: inviteCode },
+                { $push: { id: id } },
+                function (err, results) {
+                  console.log(inviteCode);
+                  console.log(id);
+                  if (err) {
+                    console.log(err);
+                    return res.end(err);
+                  }
+                  //console.log(Object.keys(results).length);
+                  if (Object.keys(results).length > 0) {
+                    console.log("들어옴");
 
+                    res.writeHead("200", {
+                      "Content-Type": "application/json;charset=utf8",
+                    });
+                    res.write(JSON.stringify(results));
+                    res.end();
+                  }
+                }
+              );
+            } else {
               res.writeHead("200", {
                 "Content-Type": "application/json;charset=utf8",
               });
-              res.write(JSON.stringify(results));
-              res.end();
-            } else {
-              res.write("0");
+              res.write(JSON.stringify({ groupname: "noinvitecode" }));
               res.end();
             }
           }
