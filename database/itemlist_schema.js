@@ -19,15 +19,9 @@ Schema.createSchema = function (mongoose) {
     id: { type: String, default: "" },
   });
 
-  // 스키마에 static 메소드 추가
-  ItemListSchema.static("findByEnglish", function (id, callback) {
-    return this.find({ id: id }, callback);
-  });
-
   ItemListSchema.static("findAll", function (id, callback) {
     return this.find({}, callback);
   });
-  mongoose.model("VOCA", ItemListSchema);
 
   console.log("ItemListSchema 정의함.");
 
